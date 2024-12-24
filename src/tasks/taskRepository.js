@@ -15,7 +15,8 @@ export async function loadFile() {
 }
 
 export async function generateId(taskList){
-  return taskList.length > 0 ? taskList.length + 1 : 1
+  const taskIndex = taskList.findLastIndex((task) => task.id)
+  return taskList[taskIndex].id + 1;
 }
 
 export async function save(tasks) {
