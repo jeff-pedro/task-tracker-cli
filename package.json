@@ -1,0 +1,38 @@
+{
+  "name": "task-tracker-cli",
+  "version": "1.0.0",
+  "description": "CLI to track and manage simple tasks.",
+  "main": "src/index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeff-pedro/task-tracker-cli/"
+  },
+  "bugs": "",
+  "keywords": ["task-cli", "task-tracker", "tasks"],
+  "author": {
+    "name": "Jefferson Santos",
+    "email": "jeffersonpedro89@gmail.com",
+    "url": "https://github.com/jeff-pedro/"
+  },
+  "contributors": [
+
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "test": ""
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}
