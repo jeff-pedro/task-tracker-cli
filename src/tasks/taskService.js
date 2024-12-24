@@ -30,9 +30,23 @@ export async function removeTask(id) {
     console.error(error);
   }
 }
+export async function updateTask(id, description) {
+  try {
+   const tasks = await loadFile();
+   const taskIndex = tasks.findIndex((task) => task.id === Number(id));
+  
+   tasks[taskIndex].description = description
+  
+   await save(tasks);
+   console.log(`Task updated successfully`);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function listTasks(status) {
-  if (validateStatus(status)) {
+    validateStatus(status);
+
     const tasks = await loadFile();
   
     const filteredTasks = status
@@ -42,5 +56,4 @@ export async function listTasks(status) {
     filteredTasks.length > 0
     ? console.log(filteredTasks)
     : console.log(`Any task with status ${status} found`);
-  }
 }
