@@ -1,5 +1,5 @@
 import validateArgs from './validations/validateArgs.js';
-import { addTask, removeTask } from './tasks/taskService.js'
+import { addTask, removeTask, listTasks } from './tasks/taskService.js'
 
 const [, , option, value ] = process.argv;
 
@@ -10,6 +10,9 @@ async function main() {
     break;
     case 'remove': 
     await removeTask(value);
+    break;
+    case 'list': 
+    await listTasks();
     break;
     default:
       console.log('Invalid option.');

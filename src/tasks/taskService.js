@@ -29,3 +29,8 @@ export async function removeTask(id) {
     console.error(error);
   }
 }
+
+export async function listTasks() {
+  const tasks = await loadFile();
+  console.log(tasks);
+}
