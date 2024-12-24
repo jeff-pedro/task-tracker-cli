@@ -1,3 +1,4 @@
+import { validateStatus } from '../validations/validateStatus.js';
 import { loadFile, generateId, save } from './taskRepository.js';
 
 export async function addTask(description) {
@@ -30,7 +31,16 @@ export async function removeTask(id) {
   }
 }
 
-export async function listTasks() {
-  const tasks = await loadFile();
-  console.log(tasks);
+export async function listTasks(status) {
+  if (validateStatus(status)) {
+    const tasks = await loadFile();
+  
+    const filteredTasks = status
+    ? tasks.filter((task) => task.status === status)
+    : tasks
+  
+    filteredTasks.length > 0
+    ? console.log(filteredTasks)
+    : console.log(`Any task with status ${status} found`);
+  }
 }

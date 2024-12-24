@@ -12,7 +12,7 @@ async function main() {
     await removeTask(value);
     break;
     case 'list': 
-    await listTasks();
+    await listTasks(value);
     break;
     default:
       console.log('Invalid option.');
