@@ -17,3 +17,15 @@ export async function addTask(description) {
       console.error(error);
     }
   }
+
+export async function removeTask(id) {
+  try {
+   const tasks = await loadFile();
+   const taskIndex = tasks.findIndex(task => task.id === Number(id));
+   tasks.splice(taskIndex ,1);
+   await save(tasks);
+   console.log(`Task removed successfully`);
+  } catch (error) {
+    console.error(error);
+  }
+}
