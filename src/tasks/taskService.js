@@ -1,3 +1,4 @@
+import { validateArgs } from '../validations/validateArgs.js';
 import { validateStatus } from '../validations/validateStatus.js';
 import { loadFile, generateId, save } from './taskRepository.js';
 
@@ -24,8 +25,12 @@ export async function removeTask(id) {
   try {
    const tasks = await loadFile();
    const taskIndex = tasks.findIndex(task => task.id === Number(id));
-   tasks.splice(taskIndex ,1);
+
+   if (taskIndex === -1) {
+    throw new Error(`Task with id ${id} was not found`).message;
+   }
    
+   tasks.splice(taskIndex ,1);
    await save(tasks);
    console.log(`Task removed successfully`);
   } catch (error) {
@@ -35,13 +40,15 @@ export async function removeTask(id) {
 
 export async function updateTask(id, description) {
   try {
-   const tasks = await loadFile();
-   const taskIndex = tasks.findIndex((task) => task.id === Number(id));
-  
-   tasks[taskIndex].description = description;
-  
-   await save(tasks);
-   console.log(`Task updated successfully`);
+    await validateArgs({ id, description });
+
+    const tasks = await loadFile();
+    const taskIndex = tasks.findIndex((task) => task.id === Number(id));
+    
+    tasks[taskIndex].description = description
+    
+    await save(tasks);
+    console.log(`Task updated successfully`);
   } catch (error) {
     console.error(error);
   }

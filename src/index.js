@@ -1,5 +1,5 @@
-import validateArgs from './validations/validateArgs.js';
 import { addTask, removeTask, listTasks, updateTask, updateStatusTask } from './tasks/taskService.js'
+import validateOptions from './validations/validateOptions.js';
 
 const [, , option, arg1, arg2] = process.argv;
 
@@ -27,7 +27,7 @@ async function main() {
     await updateStatusTask(option, arg1);
     break;
     default:
-      validateArgs(option);
+      validateOptions(option);
     }  
   }
   
