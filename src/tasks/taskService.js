@@ -46,6 +46,7 @@ export async function updateTask(id, description) {
     const taskIndex = tasks.findIndex((task) => task.id === Number(id));
     
     tasks[taskIndex].description = description
+    tasks[taskIndex].updatedAt = new Date().toISOString();
     
     await save(tasks);
     console.log(`Task updated successfully`);
