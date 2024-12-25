@@ -1,7 +1,9 @@
-export default function validateArgs(option, value) {
-    const options = ['add', 'remove', 'list', 'update'];
+const validOptions = [
+  'add', 'remove', 'list', 'update', 'mark-done', 'mark-todo', 'mark-in-progress'
+];
 
-    if (!options.includes(option)) {
-      console.log('Invalid option. Valid options: add, update, list and remove');
+export default function validateArgs(option) {
+    if (!validOptions.includes(option)) {
+      console.log(`Invalid option. Valid options: ${validOptions}`);
     }
   }

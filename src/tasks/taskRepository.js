@@ -10,7 +10,7 @@ export async function createTaskFile() {
       await writeFile(taskFilePath, '[]');
     }
   } catch (error) {
-    console.error(`Error creating file ${taskFile}:`, error);
+    console.error(`Error creating file ${taskFile}`, error);
   }
 }
 
@@ -19,13 +19,17 @@ export async function loadFile() {
     await createTaskFile();
     return JSON.parse(await readFile(taskFilePath));
   } catch (error) {
-   console.error(`Error loading file ${taskFile}:`, error);
+    console.error(`Error loading file ${taskFile}`, error);
   }
 }
 
 export async function generateId(taskList){
-  const taskIndex = taskList.findLastIndex((task) => task.id)
-  return taskList[taskIndex].id + 1;
+  if (taskList.length > 0) {
+    const taskIndex = taskList.findLastIndex((task) => task.id)
+    return taskList[taskIndex].id + 1;
+  }  else {
+    return 1
+  }
 }
 
 export async function save(tasks) {
