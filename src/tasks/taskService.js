@@ -73,19 +73,28 @@ export async function updateStatusTask(option, id) {
 }
 
 export async function listTasks(status) {
-    validateStatus(status);
-
-    try {
-      const tasks = await loadFile();
+  try {
+    const tasks = await loadFile();
     
-      const filteredTasks = status
-      ? tasks.filter((task) => task.status === status)
-      : tasks;
-    
-      filteredTasks.length > 0
-      ? console.log(filteredTasks)
-      : console.log(`Any task with status ${status} found`);
-    } catch (error) {
-      console.error(error);
+    if (status) {
+      validateStatus(status);
     }
+
+    const filteredTasks = status
+    ? tasks.filter((task) => task.status === status)
+    : tasks;
+  
+    if (filteredTasks.length > 0) {
+      console.log(filteredTasks)
+    } else {
+      console.log(
+        status
+        ? `Any task with status ${status} found`
+        : 'No tasks found'
+      );
+    }
+        
+  } catch (error) {
+    console.error(error);
+  }
 }

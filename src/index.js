@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { addTask, removeTask, listTasks, updateTask, updateStatusTask } from './tasks/taskService.js'
 import validateOptions from './validations/validateOptions.js';
 
