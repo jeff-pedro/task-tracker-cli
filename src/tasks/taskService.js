@@ -1,6 +1,6 @@
 import { validateArgs } from '../validations/validateArgs.js';
 import { validateStatus } from '../validations/validateStatus.js';
-import { validateTaskId } from '../validations/validateTask.js';
+import { validateTaskId, validateTaskStatus } from '../validations/validateTask.js';
 import { loadFile, generateId, save } from './taskRepository.js';
 
 export async function addTask(description) {
@@ -80,7 +80,7 @@ export async function listTasks(status) {
     const tasks = await loadFile();
 
     if (status) {
-      validateStatus(status);
+      validateTaskStatus(status);
     }
 
     const filteredTasks = status
