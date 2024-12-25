@@ -1,22 +1,35 @@
-import { writeFile, readFile, readdir } from 'fs/promises';
+import { writeFile, readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 
-const taskFilePath = new URL('tasks.json', import.meta.url).pathname;
+const taskFile = 'tasks.json';
+const taskFilePath = new URL(taskFile, import.meta.url).pathname;
 
 export async function createTaskFile() {
-  if (!existsSync(taskFilePath)) {
-    await writeFile(taskFilePath, '[]');
+  try {
+    if (!existsSync(taskFilePath)) {
+      await writeFile(taskFilePath, '[]');
+    }
+  } catch (error) {
+    console.error(`Error creating file ${taskFile}`, error);
   }
 }
 
 export async function loadFile() {
-  await createTaskFile();
-  return JSON.parse(await readFile(taskFilePath));
+  try {
+    await createTaskFile();
+    return JSON.parse(await readFile(taskFilePath));
+  } catch (error) {
+    console.error(`Error loading file ${taskFile}`, error);
+  }
 }
 
 export async function generateId(taskList){
-  const taskIndex = taskList.findLastIndex((task) => task.id)
-  return taskList[taskIndex].id + 1;
+  if (taskList.length > 0) {
+    const taskIndex = taskList.findLastIndex((task) => task.id)
+    return taskList[taskIndex].id + 1;
+  }  else {
+    return 1
+  }
 }
 
 export async function save(tasks) {

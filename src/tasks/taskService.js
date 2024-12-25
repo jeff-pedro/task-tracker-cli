@@ -12,18 +12,20 @@ export async function addTask(description) {
         updateAt:new Date().toISOString(),
       }
       tasks.push(newTask);
+      
       await save(tasks);
       console.log(`Task added successfully (ID: ${tasks[tasks.length - 1].id})`);
     } catch (error) {
       console.error(error);
     }
-  }
+}
 
 export async function removeTask(id) {
   try {
    const tasks = await loadFile();
    const taskIndex = tasks.findIndex(task => task.id === Number(id));
    tasks.splice(taskIndex ,1);
+   
    await save(tasks);
    console.log(`Task removed successfully`);
   } catch (error) {
@@ -31,16 +33,51 @@ export async function removeTask(id) {
   }
 }
 
-export async function listTasks(status) {
-  if (validateStatus(status)) {
-    const tasks = await loadFile();
+export async function updateTask(id, description) {
+  try {
+   const tasks = await loadFile();
+   const taskIndex = tasks.findIndex((task) => task.id === Number(id));
   
-    const filteredTasks = status
-    ? tasks.filter((task) => task.status === status)
-    : tasks
+   tasks[taskIndex].description = description;
   
-    filteredTasks.length > 0
-    ? console.log(filteredTasks)
-    : console.log(`Any task with status ${status} found`);
+   await save(tasks);
+   console.log(`Task updated successfully`);
+  } catch (error) {
+    console.error(error);
   }
+}
+
+export async function updateStatusTask(option, id) {
+  const status = option.split("mark-")[1]
+  validateStatus(status);
+
+  try {
+    const tasks = await loadFile();
+    const taskIndex = tasks.findIndex((task) => task.id === Number(id));
+   
+    tasks[taskIndex].status = status;
+   
+    await save(tasks);
+    console.log(`Task marked as ${status}`);
+   } catch (error) {
+     console.error(error);
+   }
+}
+
+export async function listTasks(status) {
+    validateStatus(status);
+
+    try {
+      const tasks = await loadFile();
+    
+      const filteredTasks = status
+      ? tasks.filter((task) => task.status === status)
+      : tasks;
+    
+      filteredTasks.length > 0
+      ? console.log(filteredTasks)
+      : console.log(`Any task with status ${status} found`);
+    } catch (error) {
+      console.error(error);
+    }
 }
