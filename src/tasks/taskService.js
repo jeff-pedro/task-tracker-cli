@@ -20,7 +20,7 @@ export async function addTask(description) {
     await save(tasks);
     console.log(`Task added successfully (ID: ${tasks[tasks.length - 1].id})`);
   } catch (error) {
-    console.error(error);
+    console.error('Error adding task:', error);
   }
 }
 
@@ -32,14 +32,14 @@ export async function removeTask(id) {
     const taskIndex = tasks.findIndex((task) => task.id === Number(id));
 
     if (taskIndex === -1) {
-      throw new Error(`Task with id ${id} not found`).message;
+      throw new Error(`Task with ID ${id} not found`).message;
     }
 
     tasks.splice(taskIndex, 1);
     await save(tasks);
     console.log(`Task removed successfully (ID: ${id})`);
   } catch (error) {
-    console.error(error);
+    console.error('Error removing task:', error);
   }
 }
 
