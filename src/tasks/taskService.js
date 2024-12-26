@@ -32,7 +32,7 @@ export async function removeTask(id) {
     const taskIndex = tasks.findIndex((task) => task.id === Number(id));
 
     if (taskIndex === -1) {
-      throw new Error(`Task with ID ${id} not found`).message;
+      throw new Error(`Task with ID ${id} not found.`).message;
     }
 
     tasks.splice(taskIndex, 1);
@@ -45,18 +45,23 @@ export async function removeTask(id) {
 
 export async function updateTask(id, description) {
   try {
-    await validateArgs({ id, description });
+    validateTaskId(id);
+    validateTaskDescription(description);
 
     const tasks = await loadFile();
     const taskIndex = tasks.findIndex((task) => task.id === Number(id));
+
+    if (taskIndex === -1) {
+      throw new Error(`Task with ID ${id} not found.`).message;
+    }
 
     tasks[taskIndex].description = description;
     tasks[taskIndex].updatedAt = new Date().toISOString();
 
     await save(tasks);
-    console.log(`Task updated successfully`);
+    console.log(`Task updated successfully (ID: ${id})`);
   } catch (error) {
-    console.error(error);
+    console.error('Error updating task:', error);
   }
 }
 
