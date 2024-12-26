@@ -1,6 +1,10 @@
 import { validateArgs } from '../validations/validateArgs.js';
 import { validateStatus } from '../validations/validateStatus.js';
-import { validateTaskDescription, validateTaskId, validateTaskStatus } from '../validations/validateTask.js';
+import {
+  validateTaskDescription,
+  validateTaskId,
+  validateTaskStatus,
+} from '../validations/validateTask.js';
 import { loadFile, generateId, save } from './taskRepository.js';
 
 export async function addTask(description) {
@@ -97,11 +101,12 @@ export async function listTasks(status) {
     if (filteredTasks.length > 0) {
       console.log(filteredTasks);
     } else {
-      console.log(
-        status ? `Any task with status ${status} found` : 'No tasks found'
-      );
+      const message = status
+        ? `Any task with status ${status} found.`
+        : 'No tasks found.';
+      console.log(message);
     }
   } catch (error) {
-    console.error(error);
+    console.error('Error listing task:', error);
   }
 }
