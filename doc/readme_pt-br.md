@@ -5,7 +5,7 @@
 > Solução para o desafio [task-tracker-cli](https://github.com/jeff-pedro/task-tracker-cli) do [roadmap.sh](https://roadmap.sh/projects/task-tracker).
 
 <a>Português</a> -
-<a href="readme.md">Inglês</a>
+<a href="../readme.md">Inglês</a>
 
 </div>
 
