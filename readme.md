@@ -2,7 +2,7 @@
 
 # Task Tracker CLI
 
-Solution for the [task-tracker-cli](https://github.com/jeff-pedro/task-tracker-cli) challenge from [roadmap.sh](https://roadmap.sh/projects/task-tracker).
+> Solution for the [task-tracker-cli](https://github.com/jeff-pedro/task-tracker-cli) challenge from [roadmap.sh](https://roadmap.sh/projects/task-tracker).
 
 <a>English</a> -
 <a href="./doc/readme_pt-br.md">Portuguese</a>
