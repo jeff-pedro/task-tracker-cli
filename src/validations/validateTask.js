@@ -6,9 +6,14 @@ export function validateTaskId(id) {
     }
 }
 
-
 export function validateTaskStatus(status) {    
     if (!validStatus.includes(status) && status !== undefined) {
         throw new Error(`Invalid task status '${status}'. Provide a valid option: ${validStatus.join(', ')}.`).message;
     } 
+}
+
+export function validateTaskDescription(description) {
+    if (!description) {
+        throw new Error('Missing task description. Please provide one.').message;
+    }
 }

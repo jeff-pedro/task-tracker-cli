@@ -1,17 +1,19 @@
 import { validateArgs } from '../validations/validateArgs.js';
 import { validateStatus } from '../validations/validateStatus.js';
-import { validateTaskId, validateTaskStatus } from '../validations/validateTask.js';
+import { validateTaskDescription, validateTaskId, validateTaskStatus } from '../validations/validateTask.js';
 import { loadFile, generateId, save } from './taskRepository.js';
 
 export async function addTask(description) {
   try {
+    validateTaskDescription(description);
+
     const tasks = await loadFile();
     const newTask = {
       id: await generateId(tasks),
       description,
       status: 'todo',
       createdAt: new Date().toISOString(),
-      updateAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
     tasks.push(newTask);
 

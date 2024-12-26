@@ -24,12 +24,11 @@ export async function loadFile() {
 }
 
 export async function generateId(taskList){
-  if (taskList.length > 0) {
-    const taskIndex = taskList.findLastIndex((task) => task.id)
-    return taskList[taskIndex].id + 1;
-  }  else {
-    return 1
+  let maxId = 0;
+  for (const task of taskList) {
+    maxId = Math.max(maxId, task.id);
   }
+  return maxId + 1;
 }
 
 export async function save(tasks) {
