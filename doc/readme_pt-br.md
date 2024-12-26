@@ -1,4 +1,13 @@
-# Task Tracker
+<div align="center">
+
+# Task Tracker CLI
+
+Solução para o desafio [task-tracker-cli](https://github.com/jeff-pedro/task-tracker-cli) do [roadmap.sh](https://roadmap.sh/projects/task-tracker).
+
+<a>Português</a> -
+<a href="readme.md">Inglês</a>
+
+</div>
 
 ## Descrição
 
@@ -16,62 +25,64 @@
 
 * Node.js v18 ou maior, npm (ou yarn) instalados.
 
-## Instalação
+## Instalando
 
-1. Clone este repositório:
-
-    ```bash
-   git clone [https://seu-repositorio.git](https://seu-repositorio.git)
-   ```
-
-2. Instale as dependências:
-
-   ```bash
-   cd task-tracker-cli
-   npm install
-   ```
-
-3. Execute o script
-
-    ```bash
-    npm start
-    ```
-
-## Instação via npm
+Clone o repositório e execute o seguinte comando:
 
 ```bash
-npm install -g task-tracker-cli
+git clone https://github.com/jeff-pedro/task-tracker-cli.git
+cd task-tracker-cli
 ```
 
-## Uso
+Instalação global via npm (opcional)
 
 ```bash
-# Adicionar uma nova tarefa
-task-cli add "Fazer compras"
-# Saída: Tarefa adicionada com sucesso (ID: 1)
+npm install -g .
+# e execute ...
+task-cli
+```
 
-# Atualizar uma tarefa
+## Executando
+
+Adicionar uma nova tarefa:
+
+```bash
+npm start task-cli add "Fazer compras"
+```
+
+Atualizar uma tarefa:
+
+```bash
 task-cli update 1 "Fazer compras para o jantar"
+```
 
-# Excluir uma tarefa
+Excluir uma tarefa:
+
+```bash
 task-cli delete 1
+```
 
-# Marcar uma tarefa como em progresso
+Marcar uma tarefa como em in-progress, done ou todo:
+
+```bash
 task-cli mark-in-progress 1
 task-cli mark-done 1
+task-cli mark-todo 1
+```
 
-# Listar todas as tarefas
+Listar todas as tarefas:
+
+```bash
 task-cli list
+```
 
-# Listar tarefas por status
+Listar tarefas por status:
+
+```bash
 task-cli list done
 task-cli list todo
 task-cli list in-progress
 ```
-
-### Exemplo de uso
-
-[exemplo de como o script pode ser usado em um cenário real.]
 
 ## Estrutura do arquivo JSON
 
@@ -81,7 +92,7 @@ As tarefas são armazenadas em um arquivo JSON com a seguinte estrutura:
 [
   {
     "id": 1,
-    "description": "Comprar mantimentos",
+    "description": "Fazer compras",
     "status": "done",
     "createdAt": "2023-11-22T10:35:20Z",
     "updatedAt": "2023-11-22T10:45:20Z"
@@ -89,7 +100,3 @@ As tarefas são armazenadas em um arquivo JSON com a seguinte estrutura:
   // ... outras tarefas
 ]
 ```
-
-## Proximos passos
-
-* [melhorias futuras]

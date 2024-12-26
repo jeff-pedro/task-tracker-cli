@@ -3,8 +3,8 @@
 import { addTask, removeTask, listTasks, updateTask, updateStatusTask } from './tasks/taskService.js'
 import { validateTaskOption } from './validations/validateTask.js';
 
+// Main CLI entrypoint
 const [, , option, arg1, arg2] = process.argv;
-
 async function main() {  
   switch (option) {
     case 'add': 

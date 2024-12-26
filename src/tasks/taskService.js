@@ -5,6 +5,7 @@ import {
 } from '../validations/validateTask.js';
 import { loadFile, generateId, save } from './taskRepository.js';  
 
+// Function to create new task
 export async function addTask(description) {
   try {
     validateTaskDescription(description);
@@ -26,6 +27,7 @@ export async function addTask(description) {
   }
 }
 
+// Function to remove one task
 export async function removeTask(id) {
   try {
     validateTaskId(id);
@@ -45,6 +47,7 @@ export async function removeTask(id) {
   }
 }
 
+// Function to update one task
 export async function updateTask(id, description) {
   try {
     validateTaskId(id);
@@ -67,6 +70,7 @@ export async function updateTask(id, description) {
   }
 }
 
+// Function to update the status of one task
 export async function updateStatusTask(option, id) {
   const validStatusOptions = {
     'mark-todo': 'todo',
@@ -95,7 +99,7 @@ export async function updateStatusTask(option, id) {
     console.error('Error updating task:', error);
   }
 }
-
+// Function show all task and by status
 export async function listTasks(status) {
   try {
     const tasks = await loadFile();
