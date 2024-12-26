@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { addTask, removeTask, listTasks, updateTask, updateStatusTask } from './tasks/taskService.js'
-import validateOptions from './validations/validateOptions.js';
+import { validateTaskOption } from './validations/validateTask.js';
 
 const [, , option, arg1, arg2] = process.argv;
 
@@ -29,7 +29,7 @@ async function main() {
     await updateStatusTask(option, arg1);
     break;
     default:
-      validateOptions(option);
+      validateTaskOption(option);
     }  
   }
   

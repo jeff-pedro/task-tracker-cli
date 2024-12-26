@@ -1,11 +1,9 @@
-import { validateArgs } from '../validations/validateArgs.js';
-import { validateStatus } from '../validations/validateStatus.js';
 import {
   validateTaskDescription,
   validateTaskId,
   validateTaskStatus,
 } from '../validations/validateTask.js';
-import { loadFile, generateId, save } from './taskRepository.js';
+import { loadFile, generateId, save } from './taskRepository.js';  
 
 export async function addTask(description) {
   try {
@@ -70,19 +68,31 @@ export async function updateTask(id, description) {
 }
 
 export async function updateStatusTask(option, id) {
-  const status = option.split('mark-')[1];
-  validateStatus(status);
-
+  const validStatusOptions = {
+    'mark-todo': 'todo',
+    'mark-in-progress': 'in-progress',
+    'mark-done': 'done',
+  };
+  const status = validStatusOptions[option];
+  
   try {
+    validateTaskStatus(status);
+    validateTaskId(id);
+
     const tasks = await loadFile();
     const taskIndex = tasks.findIndex((task) => task.id === Number(id));
 
+    if (taskIndex === -1) {
+      throw new Error(`Task with ID ${id} not found.`).message;
+    }
+
     tasks[taskIndex].status = status;
+    tasks[taskIndex].updatedAt = new Date().toISOString();
 
     await save(tasks);
-    console.log(`Task marked as ${status}`);
+    console.log(`Task with ID ${id} marked as ${status}.`);
   } catch (error) {
-    console.error(error);
+    console.error('Error updating task:', error);
   }
 }
 
