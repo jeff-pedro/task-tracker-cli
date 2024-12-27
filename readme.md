@@ -4,10 +4,11 @@
 
 > Solution for the [task-tracker-cli](https://github.com/jeff-pedro/task-tracker-cli) challenge from [roadmap.sh](https://roadmap.sh/projects/task-tracker).
 
-<a>English</a> -
-<a href="./doc/readme_pt-br.md">Portuguese</a>
-
 </div>
+
+
+###### English - [Portuguese](./doc/readme_pt-br.md)
+
 
 ## Description
 
@@ -97,6 +98,5 @@ Tasks are stored in a JSON file with the following structure:
     "createdAt": "2023-11-22T10:35:20Z",
     "updatedAt": "2023-11-22T10:45:20Z"
   },
-  // ... outras tarefas
 ]
 ```
